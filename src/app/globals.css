@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0b2e49;
+  --celestial-navy: #0b2e49;
+  --celestial-deep: #002440;
+  --celestial-ink: #202020;
+  --celestial-muted: #a8a8a8;
+  --celestial-link: #4c85c1;
+  --celestial-line: #c4c4c4;
+  --celestial-surface: #f2f6f8;
+  --celestial-shell: #e5edf3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-celestial-navy: var(--celestial-navy);
+  --color-celestial-deep: var(--celestial-deep);
+  --color-celestial-ink: var(--celestial-ink);
+  --color-celestial-muted: var(--celestial-muted);
+  --color-celestial-link: var(--celestial-link);
+  --color-celestial-line: var(--celestial-line);
+  --color-celestial-surface: var(--celestial-surface);
+  --color-celestial-shell: var(--celestial-shell);
+  --font-sans: var(--font-ubuntu);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-ubuntu), Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--celestial-link) 30%, white);
+  color: var(--celestial-deep);
+}
+
+.celestial-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.85), transparent);
+}
+
+.celestial-float {
+  animation: celestial-float 16s ease-in-out infinite;
+}
+
+.celestial-float-slow {
+  animation: celestial-float 20s ease-in-out infinite reverse;
+}
+
+@keyframes celestial-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+}
