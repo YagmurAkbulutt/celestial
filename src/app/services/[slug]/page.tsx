@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ServicePageHeader } from "@/components/service-page-header";
-import { getServiceBySlug, services } from "@/lib/services";
+import {
+  formatServiceTitle,
+  getServiceBySlug,
+  services,
+} from "@/lib/services";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -161,7 +165,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/#contact"
+                href="/contact"
                 className="inline-flex w-full items-center justify-center rounded-full bg-celestial-deep px-5 py-3 text-sm font-semibold text-white transition hover:bg-celestial-link sm:w-auto"
               >
                 Request Assistance
@@ -203,15 +207,15 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 <Link
                   key={item.slug}
                   href={`/services/${item.slug}`}
-                  className="rounded-[24px] border border-celestial-line/60 bg-celestial-surface/45 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-celestial-link/60 hover:bg-white"
+                  className="flex h-full min-h-[220px] cursor-pointer flex-col rounded-[24px] border border-celestial-line/60 bg-celestial-surface/45 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-celestial-link/60 hover:bg-white"
                 >
                   <span className="inline-flex rounded-full bg-white px-3 py-1 text-[0.68rem] font-bold tracking-[0.18em] text-celestial-link">
                     {item.id}
                   </span>
-                  <h3 className="mt-4 text-base font-bold uppercase leading-snug text-celestial-deep">
-                    {item.title}
+                  <h3 className="mt-4 text-base font-bold leading-snug text-celestial-deep">
+                    {formatServiceTitle(item.title)}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-celestial-ink/72">
+                  <p className="mt-2.5 text-sm leading-6 text-celestial-ink/72">
                     {item.description}
                   </p>
                 </Link>

@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { contactEmailHref } from "@/lib/contact";
 
 const navLinks = [
   { label: "Home", href: "/#top" },
   { label: "About Us", href: "/#aboutUs" },
   { label: "Services", href: "/#services" },
   { label: "Coverage", href: "/#network" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function SiteHeader() {
@@ -95,7 +96,7 @@ export function SiteHeader() {
 
             <a
               className="inline-flex items-center justify-center rounded-full bg-celestial-link px-6 py-2.5 text-sm font-medium shadow-sm transition-all hover:bg-celestial-deep hover:shadow-md"
-              href="mailto:agency@celestialshipagency.com"
+              href={contactEmailHref}
               style={{ color: "#ffffff" }}
             >
               Request Assistance
@@ -164,7 +165,7 @@ export function SiteHeader() {
 
             <a
               className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-celestial-link px-6 py-3 text-sm font-semibold shadow-sm transition-all hover:bg-celestial-deep"
-              href="mailto:agency@celestialshipagency.com"
+              href={contactEmailHref}
               style={{ color: "#ffffff" }}
               onClick={() => setIsMenuOpen(false)}
             >

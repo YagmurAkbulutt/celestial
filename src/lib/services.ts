@@ -151,3 +151,7 @@ export const services: Service[] = [
 export function getServiceBySlug(slug: string) {
   return services.find((service) => service.slug === slug);
 }
+
+export function formatServiceTitle(title: string) {
+  return title.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+}

@@ -1,20 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  correspondenceOffices,
+  headquartersAddressLines,
+  headquartersLocation,
+  usaOfficeAddressLines,
+} from "@/lib/contact";
 
 const footerLinks = [
   { label: "Home", href: "/#top" },
   { label: "About Us", href: "/#aboutUs" },
   { label: "Services", href: "/#services" },
   { label: "Coverage", href: "/#network" },
-  { label: "Contact", href: "/#contact" },
-];
-
-const correspondenceOffices = [
-  "Zeyport / Istanbul (Bosphorus)",
-  "Tuzla",
-  "Yalova",
-  "Iskenderun",
-  "Aliaga / Izmir",
+  { label: "Contact", href: "/contact" },
 ];
 
 export function SiteFooter() {
@@ -57,16 +55,17 @@ export function SiteFooter() {
               Celestial Ship Agency and Maritime Services Inc.
             </h2>
 
-            <div className="grid gap-8 text-sm leading-7 lg:grid-cols-3">
+            <div className="grid gap-8 text-sm leading-7 lg:grid-cols-4">
               <div className="border-l border-white/10 pl-4">
                 <div className="text-white">
                   <strong className="font-medium">Headquarters</strong>
                 </div>
                 <p className="mt-2">
-                  Canakkale (Dardanelles)
+                  {headquartersLocation}
                   <br />
-                  Cumhuriyet Mh. Sahil Yolu Cd. No:55, A-Blok, D.1, 17100,
-                  Canakkale / Turkey
+                  {headquartersAddressLines[0]}
+                  <br />
+                  {headquartersAddressLines[1]}
                 </p>
 
                 <div className="mt-6 text-white">
@@ -100,13 +99,24 @@ export function SiteFooter() {
                   Piraeus / Greece
                 </p>
               </div>
+
+              <div className="border-l border-white/10 pl-4">
+                <div className="text-white">
+                  <strong className="font-medium">USA Office</strong>
+                </div>
+                <p className="mt-2">
+                  {usaOfficeAddressLines[0]}
+                  <br />
+                  {usaOfficeAddressLines[1]}
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="mt-12 flex w-full flex-col gap-3 border-t border-white/10 pt-6 text-sm text-celestial-muted lg:flex-row lg:items-center lg:justify-between">
           <p>Copyright © 2026 - All Rights Reserved - Celestial Ship Agency Inc.</p>
-          <p>Canakkale / Turkey</p>
+          <p>Çanakkale / Turkey</p>
         </div>
       </div>
     </footer>
