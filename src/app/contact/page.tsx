@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ContactPageHeader } from "@/components/contact-page-header";
 import { ContactForm } from "@/components/contact-form";
 import {
+  branchOfficeAddressLines,
   branchOfficeLocation,
   contactEmail,
   contactEmailHref,
@@ -143,17 +144,28 @@ export default function ContactPage() {
               </Link>
             </div>
 
-            <div className="mt-6 grid items-start gap-4 lg:grid-cols-12">
-              <div className="rounded-[24px] border border-celestial-line/55 bg-[linear-gradient(180deg,rgba(247,250,252,0.92)_0%,rgba(255,255,255,1)_100%)] p-5 lg:col-span-3">
+            <div className="mt-6 grid items-start gap-4 lg:grid-cols-3">
+              <div className="rounded-[24px] border border-celestial-line/55 bg-[linear-gradient(180deg,rgba(247,250,252,0.92)_0%,rgba(255,255,255,1)_100%)] p-5">
                 <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-celestial-link">
-                  Branch Office
+                  Celestial {branchOfficeLocation} Branch
                 </p>
-                <p className="mt-4 text-2xl font-bold leading-tight text-celestial-deep">
-                  {branchOfficeLocation}
-                </p>
+                <div className="mt-4 space-y-1">
+                  {branchOfficeAddressLines.map((line, index) => (
+                    <p
+                      key={line}
+                      className={
+                        index === branchOfficeAddressLines.length - 1
+                          ? "text-base font-semibold text-celestial-deep"
+                          : "text-sm leading-7 text-celestial-ink/75"
+                      }
+                    >
+                      {line}
+                    </p>
+                  ))}
+                </div>
               </div>
 
-              <div className="rounded-[24px] border border-celestial-line/55 bg-[linear-gradient(180deg,rgba(247,250,252,0.92)_0%,rgba(255,255,255,1)_100%)] p-5 lg:col-span-4">
+              <div className="rounded-[24px] border border-celestial-line/55 bg-[linear-gradient(180deg,rgba(247,250,252,0.92)_0%,rgba(255,255,255,1)_100%)] p-5">
                 <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-celestial-link">
                   Celestial Greece Branch
                 </p>
@@ -173,7 +185,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="rounded-[24px] border border-celestial-line/55 bg-[linear-gradient(180deg,rgba(247,250,252,0.92)_0%,rgba(255,255,255,1)_100%)] p-5 lg:col-span-5">
+              <div className="rounded-[24px] border border-celestial-line/55 bg-[linear-gradient(180deg,rgba(247,250,252,0.92)_0%,rgba(255,255,255,1)_100%)] p-5">
                 <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-celestial-link">
                   USA Office
                 </p>
@@ -193,7 +205,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="rounded-[28px] border border-celestial-line/55 bg-celestial-surface/45 p-5 lg:col-span-12 lg:p-6">
+              <div className="rounded-[28px] border border-celestial-line/55 bg-celestial-surface/45 p-5 lg:col-span-3 lg:p-6">
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                   <div>
                     <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-celestial-link">

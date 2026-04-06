@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  branchOfficeAddressLines,
+  branchOfficeLocation,
   correspondenceOffices,
   headquartersAddressLines,
   headquartersLocation,
@@ -71,9 +73,13 @@ export function SiteFooter() {
                 <div className="mt-6 text-white">
                   <strong className="font-medium">Branch Office</strong>
                 </div>
-                <ul className="mt-2">
-                  <li>Izmir</li>
-                </ul>
+                <p className="mt-2">
+                  {branchOfficeLocation}
+                  <br />
+                  {branchOfficeAddressLines[0]}
+                  <br />
+                  {branchOfficeAddressLines[1]}
+                </p>
               </div>
 
               <div className="border-l border-white/10 pl-4">
