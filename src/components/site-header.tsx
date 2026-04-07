@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, useSyncExternalStore } from "react";
-import { contactEmailHref } from "@/lib/contact";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 const navLinks = [
   { label: "Home", href: "/#top" },
@@ -18,6 +17,8 @@ export function SiteHeader() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const scrollY = useSyncExternalStore(
     (onStoreChange) => {
       if (!isHomePage) {
@@ -47,6 +48,34 @@ export function SiteHeader() {
     return () => mediaQuery.removeEventListener("change", closeMenu);
   }, [isHomePage]);
 
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    const closeOnOutsidePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+
+      if (!(target instanceof Node)) {
+        return;
+      }
+
+      if (
+        menuButtonRef.current?.contains(target) ||
+        mobileMenuRef.current?.contains(target)
+      ) {
+        return;
+      }
+
+      setIsMenuOpen(false);
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsidePointerDown);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsidePointerDown);
+    };
+  }, [isMenuOpen]);
+
   if (!isHomePage) {
     return null;
   }
@@ -71,7 +100,7 @@ export function SiteHeader() {
               alt="Celestial Ship Agency"
               width={254}
               height={28}
-              className="h-auto w-[220px] sm:w-[254px] transition-opacity duration-300"
+              className="h-auto w-[180px] sm:w-[254px] transition-opacity duration-300"
               priority
             />
           </Link>
@@ -94,16 +123,17 @@ export function SiteHeader() {
               ))}
             </nav>
 
-            <a
+            <Link
               className="inline-flex items-center justify-center rounded-full bg-celestial-link px-6 py-2.5 text-sm font-medium shadow-sm transition-all hover:bg-celestial-deep hover:shadow-md"
-              href={contactEmailHref}
+              href="/contact"
               style={{ color: "#ffffff" }}
             >
               Request Assistance
-            </a>
+            </Link>
           </div>
 
           <button
+            ref={menuButtonRef}
             type="button"
             aria-expanded={isMenuOpen}
             aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -135,6 +165,7 @@ export function SiteHeader() {
         </div>
 
         <div
+          ref={mobileMenuRef}
           className={`overflow-hidden transition-all duration-300 min-[981px]:hidden ${
             isMenuOpen ? "max-h-[420px] pt-4 opacity-100" : "max-h-0 pt-0 opacity-0"
           }`}
@@ -163,14 +194,14 @@ export function SiteHeader() {
               ))}
             </nav>
 
-            <a
+            <Link
               className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-celestial-link px-6 py-3 text-sm font-semibold shadow-sm transition-all hover:bg-celestial-deep"
-              href={contactEmailHref}
+              href="/contact"
               style={{ color: "#ffffff" }}
               onClick={() => setIsMenuOpen(false)}
             >
               Request Assistance
-            </a>
+            </Link>
           </div>
         </div>
       </div>

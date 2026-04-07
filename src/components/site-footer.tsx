@@ -21,7 +21,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-celestial-deep text-celestial-muted">
       <div className="mx-auto w-full max-w-7xl px-6 pb-6 pt-16 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+        <div className="grid gap-10 min-[900px]:grid-cols-[0.72fr_1.28fr]">
           <div className="space-y-6">
             <Link href="/#top" className="inline-block">
               <Image
@@ -57,7 +57,7 @@ export function SiteFooter() {
               Celestial Ship Agency and Maritime Services Inc.
             </h2>
 
-            <div className="grid gap-8 text-sm leading-7 lg:grid-cols-4">
+            <div className="grid gap-8 text-sm leading-7 sm:grid-cols-2 xl:grid-cols-4">
               <div className="border-l border-white/10 pl-4">
                 <div className="text-white">
                   <strong className="font-medium">Headquarters</strong>
@@ -120,7 +120,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex w-full flex-col gap-3 border-t border-white/10 pt-6 text-sm text-celestial-muted lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-12 flex w-full flex-col gap-3 border-t border-white/10 pt-6 text-sm text-celestial-muted sm:flex-row sm:items-center sm:justify-between">
           <p>Copyright © 2026 - All Rights Reserved - Celestial Ship Agency Inc.</p>
           <p>Çanakkale / Turkey</p>
         </div>

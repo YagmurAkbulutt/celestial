@@ -3,8 +3,12 @@ export type Service = {
   slug: string;
   title: string;
   description: string;
+  seoTitle: string;
+  seoDescription: string;
   fit: string;
   tags: string[];
+  keywords: string[];
+  relatedSearches: string[];
   overview: string;
   scope: string[];
 };
@@ -15,16 +19,32 @@ export const services: Service[] = [
     slug: "port-agency",
     title: "PORT AGENCY",
     description:
-      "End-to-end port call coordination, documentation, and local follow-up.",
-    fit: "Routine and sensitive port calls that need steady local execution from ETA to sailing.",
-    tags: ["Arrival Prep", "Port Call", "Departure"],
+      "Port agency in Turkey for cargo vessels, cruise calls, and yachts, covering pre-arrival documentation, berth and authority coordination, local attendance, and sailing follow-up.",
+    seoTitle: "Port Agency Turkey",
+    seoDescription:
+      "Port agency services in Turkey for vessel port calls, pre-arrival documentation, berth coordination, local attendance, and departure reporting.",
+    fit: "Routine and sensitive port calls in Turkish ports that need steady local execution from ETA to sailing.",
+    tags: ["Turkey Port Agency", "Port Call", "Departure"],
+    keywords: [
+      "port agency Turkey",
+      "ship agent Turkey",
+      "vessel port call coordination",
+      "Turkish port documentation",
+      "local port attendance",
+    ],
+    relatedSearches: [
+      "Port agency in Turkey",
+      "Ship agent for Turkish ports",
+      "Vessel port call coordination",
+      "Pre-arrival documentation and port formalities",
+    ],
     overview:
-      "Port agency support built around clean call preparation, local attendance, and disciplined follow-up through departure.",
+      "Celestial provides port agency services across Turkish ports, with clean pre-arrival preparation, local attendance, port call coordination, and disciplined departure follow-up.",
     scope: [
-      "Pre-arrival notices and documentation handling",
-      "Berth, authority, and operational coordination",
-      "Local attendance during the call",
-      "Departure closure and reporting follow-up",
+      "Pre-arrival notices, port documentation, and formalities handling",
+      "Berth, authority, terminal, and operational coordination",
+      "Local ship agency attendance during the port call",
+      "Departure clearance, sailing follow-up, and post-call reporting",
     ],
   },
   {
@@ -32,16 +52,32 @@ export const services: Service[] = [
     slug: "protective-agency",
     title: "PROTECTIVE AGENCY",
     description:
-      "Independent representation for owners, operators, and charterers on sensitive calls.",
-    fit: "Owners, operators, and charterers who need independent local eyes and cleaner reporting.",
+      "Protective agency in Turkey for owners, operators, and charterers who need independent local representation, issue escalation, and commercially clear reporting.",
+    seoTitle: "Protective Agency Turkey",
+    seoDescription:
+      "Protective agency services in Turkey for owners, operators, and charterers needing independent local representation and clear port call reporting.",
+    fit: "Owners, operators, and charterers who need independent local eyes, cleaner reporting, and stronger control over sensitive Turkish port calls.",
     tags: ["Owners", "Charterers", "Independent Desk"],
+    keywords: [
+      "protective agency Turkey",
+      "owner protective agent Turkey",
+      "charterer protective agency",
+      "independent port call representation",
+      "ship agency reporting Turkey",
+    ],
+    relatedSearches: [
+      "Protective agency in Turkey",
+      "Owner protective agent for Turkish ports",
+      "Charterer protective agency support",
+      "Independent local representation for port calls",
+    ],
     overview:
-      "Protective agency support for principals who want a separate local operating thread and tighter commercial visibility.",
+      "Protective agency support for principals who want an independent Turkish local operating thread, tighter commercial visibility, and direct reporting during the call.",
     scope: [
-      "Independent local representation on the ground",
-      "Attendance and issue escalation during the call",
-      "Transparent updates for principals and stakeholders",
-      "Closer follow-up on sensitive local matters",
+      "Independent local representation for owners, operators, and charterers",
+      "Attendance, issue escalation, and port call follow-up during the call",
+      "Transparent updates for principals, managers, and stakeholders",
+      "Closer follow-up on sensitive local, operational, and commercial matters",
     ],
   },
   {
@@ -49,16 +85,32 @@ export const services: Service[] = [
     slug: "husbandry-services",
     title: "HUSBANDRY SERVICES",
     description:
-      "Crew changes, cash to master, stores, medical attendance, and daily support.",
-    fit: "Operational and welfare requirements that need fast coordination around the vessel.",
+      "Husbandry services in Turkey for crew changes, cash to master, ship stores, medical attendance, launch coordination, and daily vessel support.",
+    seoTitle: "Husbandry Services Turkey",
+    seoDescription:
+      "Husbandry services in Turkey for crew change, cash to master, medical attendance, ship stores, launch services, and onboard vessel support.",
+    fit: "Operational and crew welfare requirements around Turkish ports and anchorages that need fast coordination around the vessel.",
     tags: ["Crew Change", "Stores", "Medical"],
+    keywords: [
+      "husbandry services Turkey",
+      "crew change Turkey",
+      "cash to master Turkey",
+      "ship stores delivery",
+      "medical attendance for vessels",
+    ],
+    relatedSearches: [
+      "Husbandry services in Turkey",
+      "Crew change coordination Turkey",
+      "Cash to master and ship stores",
+      "Medical attendance for vessels in Turkish ports",
+    ],
     overview:
-      "Husbandry support focused on crew welfare, onboard requirements, and responsive local execution around the vessel.",
+      "Husbandry support focused on crew welfare, onboard requirements, and responsive local execution for vessels calling Turkish ports and anchorages.",
     scope: [
-      "Crew changes and immigration coordination",
-      "Cash to master and owner-required deliveries",
-      "Medical attendance and urgent local support",
-      "Stores, launch services, and onboard follow-up",
+      "Crew change planning, immigration coordination, and local transport",
+      "Cash to master, owner-required deliveries, and onboard arrangements",
+      "Medical attendance, hospital visits, and urgent local support",
+      "Ship stores, launch services, and onboard follow-up",
     ],
   },
   {
@@ -66,16 +118,32 @@ export const services: Service[] = [
     slug: "turkish-straits-transit-agency",
     title: "TURKISH STRAITS TRANSIT AGENCY",
     description:
-      "Bosphorus and Dardanelles transit planning with fast operational handling.",
-    fit: "Transit calls where timing, documentation, and local escalation all need to stay tight.",
+      "Turkish Straits transit agency support for Bosphorus and Dardanelles passages, covering transit documentation, timing, local follow-up, and reporting.",
+    seoTitle: "Turkish Straits Transit Agency",
+    seoDescription:
+      "Turkish Straits transit agency for Bosphorus and Dardanelles passages with transit documentation, timing coordination, local authority follow-up, and reporting.",
+    fit: "Bosphorus and Dardanelles transit calls where timing, documentation, and local escalation all need to stay tight.",
     tags: ["Bosphorus", "Dardanelles", "Transit Control"],
+    keywords: [
+      "Turkish Straits transit agency",
+      "Bosphorus transit agency",
+      "Dardanelles transit agency",
+      "Canakkale ship agency",
+      "straits passage coordination",
+    ],
+    relatedSearches: [
+      "Turkish Straits transit agency",
+      "Bosphorus transit ship agent",
+      "Dardanelles transit agency support",
+      "Canakkale based agency coordination",
+    ],
     overview:
-      "Transit agency support designed for Bosphorus and Dardanelles passages where timing and local coordination have to stay aligned.",
+      "Transit agency support designed for Bosphorus and Dardanelles passages where timing, transit formalities, and local coordination have to stay aligned.",
     scope: [
-      "Transit documentation and submission handling",
-      "Timing coordination around straits passage",
-      "Local follow-up with relevant authorities",
-      "Operational reporting through the transit window",
+      "Turkish Straits transit documentation and submission handling",
+      "Timing coordination around Bosphorus and Dardanelles passage windows",
+      "Local follow-up with relevant authorities and traffic control",
+      "Operational reporting through the full straits transit window",
     ],
   },
   {
@@ -83,16 +151,32 @@ export const services: Service[] = [
     slug: "bunker-call-agency",
     title: "BUNKER CALL AGENCY",
     description:
-      "Short-stay bunker operations managed with tight timing and launch coordination.",
-    fit: "Quick bunker windows that need disciplined attendance and fast turnaround handling.",
-    tags: ["Short Stay", "Launch", "Turnaround"],
+      "Bunker call agency in Turkey for short-stay bunkering windows, local attendance, launch coordination, authority formalities, and fast turnaround handling.",
+    seoTitle: "Bunker Call Agency Turkey",
+    seoDescription:
+      "Bunker call agency in Turkey for short-stay bunkering operations, launch coordination, authority formalities, local attendance, and fast turnaround.",
+    fit: "Quick bunker windows in Turkish waters that need disciplined attendance, launch coordination, and fast turnaround handling.",
+    tags: ["Bunkering", "Short Stay", "Launch"],
+    keywords: [
+      "bunker call agency Turkey",
+      "bunkering agency Turkey",
+      "short stay bunker call",
+      "launch coordination Turkey",
+      "bunker operation attendance",
+    ],
+    relatedSearches: [
+      "Bunker call agency in Turkey",
+      "Short-stay bunkering support",
+      "Launch coordination for bunker operations",
+      "Bunker call documentation and attendance",
+    ],
     overview:
-      "Bunker call support for short operational windows that demand fast response and clean local execution.",
+      "Bunker call support in Turkish waters for short operational windows that demand fast response, clean documentation, launch coordination, and local execution.",
     scope: [
-      "Short-stay operational planning and attendance",
-      "Launch and local transfer coordination",
-      "Documentation and authority handling during the call",
-      "Departure timing support and close-out",
+      "Short-stay bunker call planning and local attendance",
+      "Launch, supplier, and local transfer coordination",
+      "Bunker call documentation and authority handling during the call",
+      "Departure timing support, close-out, and reporting",
     ],
   },
   {
@@ -100,16 +184,32 @@ export const services: Service[] = [
     slug: "shipyard-brokering-agency",
     title: "SHIPYARD BROKERING / AGENCY",
     description:
-      "Repair periods, docking calls, and yard-side execution under one desk.",
-    fit: "Drydock and repair periods where yard communication and vessel follow-up must stay aligned.",
-    tags: ["Repair", "Docking", "Yard Support"],
+      "Shipyard agency and brokering in Turkey for repair periods, drydock calls, yard-side coordination, vessel attendance, access, and redelivery follow-up.",
+    seoTitle: "Shipyard Agency and Brokering Turkey",
+    seoDescription:
+      "Shipyard agency and brokering in Turkey for repair periods, drydock calls, yard coordination, vessel attendance, documentation, and redelivery reporting.",
+    fit: "Drydock and repair periods in Turkish shipyards where yard communication and vessel follow-up must stay aligned.",
+    tags: ["Shipyard", "Drydock", "Repair"],
+    keywords: [
+      "shipyard agency Turkey",
+      "shipyard brokering Turkey",
+      "drydock agency Turkey",
+      "vessel repair coordination",
+      "yard support for vessels",
+    ],
+    relatedSearches: [
+      "Shipyard agency in Turkey",
+      "Shipyard brokering and drydock support",
+      "Vessel repair coordination Turkey",
+      "Yard-side agency attendance",
+    ],
     overview:
-      "Shipyard support built for repair periods and docking calls where vessel, yard, and local requirements need one coordinated channel.",
+      "Shipyard agency support built for repair periods and drydock calls where vessel, yard, suppliers, and local requirements need one coordinated channel.",
     scope: [
-      "Yard-side operational follow-up and attendance",
-      "Repair period coordination with local stakeholders",
-      "Documentation, access, and service arrangements",
-      "Continuous reporting during docking and redelivery",
+      "Yard-side operational follow-up and vessel attendance",
+      "Repair period coordination with shipyard teams, suppliers, and local stakeholders",
+      "Documentation, access, launch, transport, and service arrangements",
+      "Continuous reporting during docking, repair progress, and redelivery",
     ],
   },
   {
@@ -117,16 +217,32 @@ export const services: Service[] = [
     slug: "project-cargo",
     title: "PROJECT CARGO",
     description:
-      "Heavy lift and special cargo moves that require tighter local control.",
-    fit: "Non-standard cargo operations that carry more planning pressure and local coordination risk.",
-    tags: ["Heavy Lift", "Special Move", "Coordination"],
+      "Project cargo agency support in Turkey for heavy lift, special cargo, non-standard port operations, local alignment, and time-sensitive reporting.",
+    seoTitle: "Project Cargo Agency Turkey",
+    seoDescription:
+      "Project cargo agency support in Turkey for heavy lift, special cargo, non-standard port operations, local coordination, and operational reporting.",
+    fit: "Non-standard cargo operations in Turkish ports that carry more planning pressure and local coordination risk.",
+    tags: ["Heavy Lift", "Special Cargo", "Coordination"],
+    keywords: [
+      "project cargo agency Turkey",
+      "heavy lift agency Turkey",
+      "special cargo port coordination",
+      "non-standard cargo operations",
+      "project cargo ship agent",
+    ],
+    relatedSearches: [
+      "Project cargo agency in Turkey",
+      "Heavy lift port coordination",
+      "Special cargo agency support",
+      "Non-standard cargo operation follow-up",
+    ],
     overview:
-      "Project cargo support for heavy lift and non-standard operations where local control and planning discipline matter more.",
+      "Project cargo support for heavy lift, special cargo, and non-standard port operations where local control and planning discipline matter more.",
     scope: [
-      "Special cargo call preparation and coordination",
-      "Local alignment for non-standard port operations",
-      "Operational follow-up during heavy lift activity",
-      "Reporting and issue escalation under tighter timelines",
+      "Special cargo call preparation, terminal alignment, and coordination",
+      "Local alignment for non-standard port operations and cargo requirements",
+      "Operational follow-up during heavy lift and project cargo activity",
+      "Reporting and issue escalation under tighter project timelines",
     ],
   },
   {
@@ -134,15 +250,31 @@ export const services: Service[] = [
     slug: "spare-parts-delivery",
     title: "SPARE PARTS DELIVERY",
     description:
-      "Urgent spare parts routed onboard with customs and delivery follow-up.",
-    fit: "Time-sensitive onboard deliveries where customs and vessel timing have to stay synchronized.",
-    tags: ["Urgent Parts", "Customs", "Onboard Delivery"],
+      "Ship spare parts delivery in Turkey for urgent onboard requirements, customs follow-up, launch or local delivery, vessel timing, and handover reporting.",
+    seoTitle: "Ship Spare Parts Delivery Turkey",
+    seoDescription:
+      "Ship spare parts delivery in Turkey for urgent onboard requirements with customs follow-up, launch delivery, vessel timing, and handover reporting.",
+    fit: "Time-sensitive spare parts and onboard deliveries in Turkey where customs and vessel timing have to stay synchronized.",
+    tags: ["Spare Parts", "Customs", "Onboard Delivery"],
+    keywords: [
+      "ship spare parts delivery Turkey",
+      "vessel spare parts customs Turkey",
+      "onboard delivery Turkey",
+      "urgent spare parts to vessel",
+      "ship parts logistics Turkey",
+    ],
+    relatedSearches: [
+      "Ship spare parts delivery in Turkey",
+      "Urgent spare parts to vessel",
+      "Vessel spare parts customs follow-up",
+      "Onboard delivery by launch or local transfer",
+    ],
     overview:
-      "Spare parts delivery support for urgent onboard requirements that need customs handling and vessel timing to stay synchronized.",
+      "Spare parts delivery support for urgent onboard requirements in Turkey that need customs handling, launch coordination, and vessel timing to stay synchronized.",
     scope: [
-      "Customs follow-up for urgent spare parts",
+      "Customs follow-up for urgent vessel spare parts",
       "Launch or local delivery coordination to the vessel",
-      "Timing management against vessel operations",
+      "Timing management against port call, anchorage, or transit operations",
       "Confirmation and reporting after onboard handover",
     ],
   },

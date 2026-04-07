@@ -1,11 +1,80 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { JsonLd } from "@/components/json-ld";
 import { formatServiceTitle, services } from "@/lib/services";
 import {
   contactEmail,
   contactEmailHref,
   headquartersLocation,
 } from "@/lib/contact";
+import {
+  absoluteUrl,
+  defaultDescription,
+  defaultKeywords,
+  defaultTitle,
+  sharedOpenGraphImage,
+  siteName,
+  siteUrl,
+} from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: defaultTitle,
+  },
+  description: defaultDescription,
+  keywords: defaultKeywords,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: defaultTitle,
+    description: defaultDescription,
+    url: "/",
+    siteName,
+    images: [sharedOpenGraphImage],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [sharedOpenGraphImage.url],
+  },
+};
+
+const homePageJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/#webpage`,
+    url: absoluteUrl("/"),
+    name: defaultTitle,
+    description: defaultDescription,
+    isPartOf: {
+      "@id": `${siteUrl}/#website`,
+    },
+    about: {
+      "@id": `${siteUrl}/#organization`,
+    },
+    primaryImageOfPage: absoluteUrl("/hero-ship.jpg"),
+    inLanguage: "en",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${siteUrl}/#services`,
+    name: "Ship agency services in Turkey",
+    itemListElement: services.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: formatServiceTitle(service.title),
+      url: absoluteUrl(`/services/${service.slug}`),
+      description: service.seoDescription,
+    })),
+  },
+];
 
 const statCards = [
   {
@@ -91,7 +160,9 @@ const networkNodes = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <JsonLd data={homePageJsonLd} id="home-json-ld" />
+      <div className="min-h-screen bg-background">
       <main id="top" className="flex-1">
         <section className="relative overflow-hidden bg-celestial-navy text-white">
           <div className="absolute inset-0">
@@ -113,13 +184,14 @@ export default function Home() {
 
               <div className="space-y-5">
                 <h1 className="max-w-4xl text-4xl font-extrabold leading-[1.1] sm:text-5xl xl:text-5xl">
-                  Elegant local execution for vessels moving through Turkish
-                  waters.
+                  Ship agency services for Turkish ports, shipyards, and
+                  straits.
                 </h1>
                 <p className="max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-                  Celestial is built for ship managers, operators and charterers,
-                   who need speed, clarity, and reliable
-                  agency coordination across ports, shipyards, and straits.
+                  Celestial supports ship managers, operators, and charterers
+                  with port agency, protective agency, husbandry, Turkish
+                  Straits transit, bunker call, shipyard, project cargo, and
+                  spare parts coordination across Turkey.
                 </p>
               </div>
 
@@ -161,7 +233,8 @@ export default function Home() {
                 </h2>
                 <p className="mt-3 max-w-md text-sm leading-relaxed text-white/80">
                   Canakkale-based agency coordination from pre-arrival to sailing.
-Clear communication, local control, and reliable follow-up across port calls, straits, and shipyard operations.
+                  Clear communication, local control, and reliable follow-up
+                  across port calls, straits, and shipyard operations.
                 </p>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -209,9 +282,9 @@ Clear communication, local control, and reliable follow-up across port calls, st
                   One operating thread from pre-arrival to departure.
                 </h2>
                 <p className="max-w-2xl text-base leading-8 text-celestial-ink/80">
-                  This section is not another company summary. It shows how
-                  Celestial keeps a port call readable, locally controlled, and
-                  commercially calm from the first notice to final sailing.
+                  Celestial keeps port calls, straits transits, and shipyard
+                  operations readable, locally controlled, and commercially
+                  calm from the first notice to final sailing.
                 </p>
               </div>
 
@@ -322,20 +395,22 @@ Clear communication, local control, and reliable follow-up across port calls, st
                 Services
               </p>
               <h2 className="text-3xl font-extrabold leading-tight text-celestial-deep sm:text-4xl">
-                Service lines with dedicated detail pages.
+                Ship agency services for Turkish ports and straits.
               </h2>
               <p className="text-base leading-8 text-celestial-ink/80">
-                Each card leads to its own service page, so the homepage stays
-                clean and the detail belongs where it should.
+                Choose the service line that matches your vessel requirement:
+                port agency, protective agency, husbandry, Turkish Straits
+                transit, bunker call, shipyard, project cargo, or spare parts
+                delivery.
               </p>
             </div>
 
-            <div className="mt-10 grid items-start gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 grid auto-rows-fr gap-4 md:grid-cols-2 xl:grid-cols-4">
               {services.map((service) => (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
-                  className="group flex h-full min-h-[252px] cursor-pointer flex-col rounded-[28px] border border-celestial-line/60 bg-white p-5 shadow-[0_14px_36px_rgba(11,46,73,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-celestial-link/60 hover:shadow-[0_22px_44px_rgba(11,46,73,0.1)]"
+                  className="group flex h-full min-h-[192px] cursor-pointer flex-col rounded-[28px] border border-celestial-line/60 bg-white p-5 shadow-[0_14px_36px_rgba(11,46,73,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-celestial-link/60 hover:shadow-[0_22px_44px_rgba(11,46,73,0.1)] xl:min-h-[252px]"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span className="inline-flex rounded-full bg-celestial-surface px-3 py-1 text-[0.68rem] font-bold tracking-[0.2em] text-celestial-link">
@@ -354,7 +429,7 @@ Clear communication, local control, and reliable follow-up across port calls, st
                     {service.description}
                   </p>
 
-                  <div className="mt-auto flex flex-wrap gap-2 pt-5">
+                  <div className="mt-auto flex flex-wrap gap-2 pt-4 xl:pt-5">
                     {service.tags.slice(0, 2).map((tag) => (
                       <span
                         key={tag}
@@ -491,7 +566,7 @@ Clear communication, local control, and reliable follow-up across port calls, st
                         <p className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-celestial-link">
                           Direct Email
                         </p>
-                        <p className="mt-2 text-base font-semibold text-white">
+                        <p className="mt-2 break-all text-base font-semibold text-white">
                           {contactEmail}
                         </p>
                       </div>
@@ -529,5 +604,6 @@ Clear communication, local control, and reliable follow-up across port calls, st
         </section>
       </main>
     </div>
+    </>
   );
 }

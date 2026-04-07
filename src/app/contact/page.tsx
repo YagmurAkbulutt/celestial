@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
 import { ContactPageHeader } from "@/components/contact-page-header";
 import { ContactForm } from "@/components/contact-form";
 import {
@@ -14,21 +15,75 @@ import {
   headquartersMapsHref,
   usaOfficeAddressLines,
 } from "@/lib/contact";
+import {
+  absoluteUrl,
+  defaultKeywords,
+  sharedOpenGraphImage,
+  siteName,
+  siteUrl,
+} from "@/lib/seo";
+
+const contactTitle = "Contact Maritime Agency Desk";
+const contactDescription =
+  "Contact Celestial Ship Agency for Turkish port agency, Turkish Straits transit, husbandry, bunker call, shipyard, project cargo, and spare parts requests.";
 
 export const metadata: Metadata = {
-  title: "Contact | Celestial Ship Agency",
-  description:
-    "Contact Celestial Ship Agency for port calls, straits transit support, husbandry services, bunker calls, and shipyard coordination.",
+  title: contactTitle,
+  description: contactDescription,
+  keywords: [
+    "contact ship agency Turkey",
+    "maritime agency desk Turkey",
+    "port agency contact Turkey",
+    "Turkish Straits agency contact",
+    ...defaultKeywords,
+  ],
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: `${contactTitle} | ${siteName}`,
+    description: contactDescription,
+    url: "/contact",
+    siteName,
+    images: [sharedOpenGraphImage],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${contactTitle} | ${siteName}`,
+    description: contactDescription,
+    images: [sharedOpenGraphImage.url],
+  },
+};
+
+const contactPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": `${siteUrl}/contact#contact-page`,
+  url: absoluteUrl("/contact"),
+  name: `${contactTitle} | ${siteName}`,
+  description: contactDescription,
+  isPartOf: {
+    "@id": `${siteUrl}/#website`,
+  },
+  about: {
+    "@id": `${siteUrl}/#organization`,
+  },
+  mainEntity: {
+    "@id": `${siteUrl}/#organization`,
+  },
 };
 
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f5f9fb_0%,#ffffff_100%)]">
+      <JsonLd data={contactPageJsonLd} id="contact-json-ld" />
       <ContactPageHeader />
 
-      <section className="relative overflow-hidden pb-16 pt-28 lg:pb-20 lg:pt-32">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(76,133,193,0.12),transparent_26%)]" />
-        <div className="pointer-events-none absolute left-0 top-28 h-56 w-56 rounded-full bg-celestial-shell/80 blur-3xl" />
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#002440_0%,#002440_25rem,#f5f9fb_25rem,#ffffff_100%)] pb-16 pt-32 lg:pb-20 lg:pt-36">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(76,133,193,0.24),transparent_26%)]" />
+        <div className="pointer-events-none absolute left-0 top-28 h-56 w-56 rounded-full bg-celestial-link/10 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-celestial-link/10 blur-3xl" />
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8">
@@ -36,12 +91,13 @@ export default function ContactPage() {
             <p className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-celestial-link">
               Contact
             </p>
-            <h1 className="text-3xl font-extrabold leading-tight text-celestial-deep sm:text-4xl">
-              Send a message or email us directly.
+            <h1 className="text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+              Contact the ship agency desk for Turkish port calls.
             </h1>
-            <p className="text-base leading-7 text-celestial-ink/75">
-              Keep it simple. Share your request, port, vessel, or service
-              need and the desk can follow up from there.
+            <p className="text-base leading-7 text-white/75">
+              Share the vessel, port, ETA, Turkish Straits transit, husbandry,
+              bunker call, shipyard, project cargo, or spare parts requirement
+              and the desk can follow up from there.
             </p>
           </div>
 
@@ -69,7 +125,7 @@ export default function ContactPage() {
                 </p>
                 <a
                   href={contactEmailHref}
-                  className="mt-4 inline-flex text-lg font-semibold text-celestial-deep transition hover:text-celestial-link"
+                  className="mt-4 inline-block max-w-full break-all text-base font-semibold text-celestial-deep transition hover:text-celestial-link sm:text-lg"
                 >
                   {contactEmail}
                 </a>
