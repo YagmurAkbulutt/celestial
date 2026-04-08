@@ -316,28 +316,38 @@ export default function Home() {
         >
           <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-celestial-shell/70 blur-3xl" />
 
-          <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-6 lg:px-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-center">
-            <div className="rounded-[32px] border border-white/70 bg-white/80 p-8 shadow-[0_24px_60px_rgba(11,46,73,0.08)] backdrop-blur-sm lg:p-10">
-              <div className="space-y-5">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-celestial-link">
-                  About Us
-                </p>
-                <h2 className="max-w-xl text-3xl font-extrabold leading-tight text-celestial-deep sm:text-4xl">
-                  Agency support built for vessels that cannot lose time in Turkish waters.
-                </h2>
-                <p className="max-w-xl text-base leading-8 text-celestial-ink/80">
-                  Celestial Ship Agency and Maritime Services Inc. handles cargo
-                  vessels, cruise vessels, and mega yachts across Turkish ports,
-                  shipyards, and straits with one coordinated operating desk.
-                </p>
-                <p className="max-w-xl text-sm leading-7 text-celestial-ink/70">
-                  The structure is simple on purpose: local control, fast
-                  response, disciplined follow-up, and reporting that stays
-                  readable for managers, operators, and charterers.
-                </p>
+          <div className="relative mx-auto grid w-full max-w-7xl gap-6 px-6 lg:px-8 xl:grid-cols-[1.05fr_0.95fr] xl:items-start">
+            <div className="overflow-hidden rounded-[32px] border border-white/70 bg-white/85 shadow-[0_24px_60px_rgba(11,46,73,0.08)] backdrop-blur-sm">
+              <div className="relative aspect-[21/9] overflow-hidden bg-celestial-shell sm:aspect-[5/2] lg:aspect-[21/8]">
+                <Image
+                  src="/bina.png"
+                  alt="Celestial Headquarters"
+                  fill
+                  sizes="(max-width: 1280px) 100vw, 54vw"
+                  className="object-cover object-center"
+                />
               </div>
 
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="space-y-5 p-5 sm:p-6 lg:p-7">
+                <div className="space-y-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-celestial-link">
+                    About Us
+                  </p>
+                  <h2 className="max-w-2xl text-2xl font-extrabold leading-tight text-celestial-deep sm:text-3xl">
+                    Agency support built for vessels that cannot lose time in Turkish waters.
+                  </h2>
+                  <p className="max-w-2xl text-base leading-8 text-celestial-ink/80">
+                    Celestial Ship Agency and Maritime Services Inc. handles cargo
+                    vessels across Turkish ports,
+                    shipyards, and straits with one coordinated operating desk.
+                  </p>
+                  <p className="max-w-2xl text-sm leading-7 text-celestial-ink/70">
+                    The structure is simple on purpose: local control, fast
+                    response, disciplined follow-up, and reporting that stays
+                    readable for managers, operators, and charterers.
+                  </p>
+                </div>
+
                 <a
                   className="inline-flex w-full items-center justify-center rounded-full bg-celestial-deep px-6 py-3 text-sm font-semibold text-white transition hover:bg-celestial-link sm:w-auto"
                   href="#services"
@@ -345,18 +355,17 @@ export default function Home() {
                 >
                   View Services
                 </a>
-
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-[34px] bg-celestial-deep p-7 text-white shadow-[0_28px_70px_rgba(0,36,64,0.24)] lg:p-9">
+            <div className="relative overflow-hidden rounded-[34px] bg-celestial-deep p-7 text-white shadow-[0_28px_70px_rgba(0,36,64,0.24)] sm:p-8 lg:p-9">
               <Image
                 src="/logo-mavi%20-%20bg.png"
                 alt=""
                 aria-hidden="true"
                 width={420}
                 height={420}
-                className="pointer-events-none absolute right-[-68px] top-32 w-[520px] origin-top-right rotate-[30deg] opacity-[0.24] mix-blend-screen lg:right-[-132px] lg:top-32 lg:w-[760px]"
+                className="pointer-events-none absolute right-[-68px] top-24 w-[520px] origin-top-right rotate-[30deg] opacity-[0.22] mix-blend-screen lg:right-[-132px] lg:top-24 lg:w-[720px]"
               />
               <div className="relative z-10">
                 <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-celestial-link">
@@ -412,13 +421,23 @@ export default function Home() {
                   href={`/services/${service.slug}`}
                   className="group flex h-full min-h-[192px] cursor-pointer flex-col rounded-[28px] border border-celestial-line/60 bg-white p-5 shadow-[0_14px_36px_rgba(11,46,73,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-celestial-link/60 hover:shadow-[0_22px_44px_rgba(11,46,73,0.1)] xl:min-h-[252px]"
                 >
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="mb-5 flex items-center justify-between gap-3">
                     <span className="inline-flex rounded-full bg-celestial-surface px-3 py-1 text-[0.68rem] font-bold tracking-[0.2em] text-celestial-link">
                       {service.id}
                     </span>
                     <span className="text-sm font-semibold text-celestial-link transition-transform duration-300 group-hover:translate-x-1">
                       View
                     </span>
+                  </div>
+
+                  <div className="relative h-[clamp(10rem,44vw,13rem)] w-full overflow-hidden rounded-[18px] md:h-[clamp(12rem,28vw,17rem)] xl:aspect-[4/3] xl:h-auto">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
 
                   <h3 className="mt-5 text-lg font-bold leading-snug text-celestial-deep">
@@ -447,14 +466,14 @@ export default function Home() {
 
         <section
           id="network"
-          className="scroll-mt-28 relative overflow-hidden bg-celestial-navy py-16 text-white lg:py-24"
+          className="scroll-mt-28 relative overflow-hidden bg-celestial-navy py-12 text-white lg:py-16"
         >
           <div className="celestial-grid absolute inset-0 opacity-20" />
           <div className="absolute -left-16 top-16 h-64 w-64 rounded-full bg-celestial-link/10 blur-3xl" />
           <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-white/5 blur-3xl" />
 
-          <div className="relative mx-auto grid w-full max-w-7xl gap-10 px-6 lg:px-8 xl:grid-cols-[0.86fr_1.14fr] xl:items-center">
-            <div className="space-y-5">
+          <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-6 lg:px-8 xl:grid-cols-[0.86fr_1.14fr] xl:items-stretch">
+            <div className="flex flex-col justify-center space-y-5">
               <div className="space-y-4">
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-celestial-link">
                   Coverage & Fit
@@ -486,10 +505,21 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="self-center rounded-[30px] border border-white/[0.12] bg-white/[0.08] p-6 shadow-2xl backdrop-blur-md lg:p-7">
-              <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-celestial-link">
-                Office Presence
-              </p>
+            <div className="flex flex-col gap-4">
+              <div className="relative h-[clamp(10rem,40vw,14rem)] w-full overflow-hidden rounded-[30px] border border-white/[0.12] bg-white/[0.04] shadow-2xl backdrop-blur-md lg:h-64 xl:h-[18rem]">
+                <Image
+                  src="/turkey_logistics_map_noborders.png"
+                  alt="Coverage Spine Logistics Map"
+                  fill
+                  sizes="(max-width: 1280px) 100vw, 57vw"
+                  className="object-cover object-center opacity-95"
+                />
+              </div>
+
+              <div className="flex-grow rounded-[30px] border border-white/[0.12] bg-white/[0.08] p-6 shadow-2xl backdrop-blur-md lg:p-7">
+                <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-celestial-link">
+                  Office Presence
+                </p>
               <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {[
                   { label: "Head Office", value: "Canakkale" },
@@ -510,6 +540,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+            </div>
             </div>
           </div>
         </section>

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/json-ld";
 import { ServicePageHeader } from "@/components/service-page-header";
+import { ImageLightbox } from "@/components/image-lightbox";
 import {
   formatServiceTitle,
   getServiceBySlug,
@@ -225,8 +227,13 @@ export default async function ServicePage({ params }: ServicePageProps) {
       </section>
 
       <section className="py-16 lg:py-20">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 lg:px-8 xl:grid-cols-[0.9fr_1.1fr]">
+        <div className="mx-auto grid w-full max-w-7xl items-start gap-8 px-6 lg:px-8 xl:grid-cols-[0.9fr_1.1fr]">
           <div className="rounded-[30px] border border-celestial-line/60 bg-white p-7 shadow-[0_18px_48px_rgba(11,46,73,0.07)] lg:p-8">
+            <ImageLightbox
+              src={service.image}
+              alt={service.title}
+              className="group relative mb-8 h-[clamp(9rem,28vw,14rem)] w-full cursor-pointer overflow-hidden rounded-[20px] transition-transform"
+            />
             <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-celestial-link">
               Service Note
             </p>
@@ -263,9 +270,29 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 ))}
               </ul>
             </div>
+
+            {service.exampleImages && service.exampleImages.length > 0 && (
+              <div className="mt-8 border-t border-celestial-line/60 pt-6">
+                <p className="mb-4 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-celestial-link">
+                  Operational Details
+                </p>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {service.exampleImages.map((img, i) => (
+                    <ImageLightbox
+                      key={img}
+                      src={img}
+                      alt="Service reference"
+                      className="group relative aspect-square w-full cursor-pointer overflow-hidden rounded-xl transition-transform"
+                      images={service.exampleImages}
+                      index={i}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="rounded-[30px] border border-celestial-line/60 bg-[linear-gradient(180deg,#ffffff_0%,#f7fafc_100%)] p-7 shadow-[0_18px_48px_rgba(11,46,73,0.07)] lg:p-8">
+          <div className="sticky top-28 h-fit rounded-[30px] border border-celestial-line/60 bg-[linear-gradient(180deg,#ffffff_0%,#f7fafc_100%)] p-7 shadow-[0_18px_48px_rgba(11,46,73,0.07)] lg:p-8">
             <p className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-celestial-link">
               Operational Fit
             </p>
@@ -332,13 +359,23 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 href={`/services/${item.slug}`}
                 className="group flex h-full min-h-[192px] cursor-pointer flex-col rounded-[28px] border border-celestial-line/60 bg-white p-5 shadow-[0_14px_36px_rgba(11,46,73,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-celestial-link/60 hover:shadow-[0_22px_44px_rgba(11,46,73,0.1)] xl:min-h-[252px]"
               >
-                <div className="flex items-center justify-between gap-3">
+                <div className="mb-5 flex items-center justify-between gap-3">
                   <span className="inline-flex rounded-full bg-celestial-surface px-3 py-1 text-[0.68rem] font-bold tracking-[0.2em] text-celestial-link">
                     {item.id}
                   </span>
                   <span className="text-sm font-semibold text-celestial-link transition-transform duration-300 group-hover:translate-x-1">
                     View
                   </span>
+                </div>
+
+                <div className="relative h-[clamp(10rem,44vw,13rem)] w-full overflow-hidden rounded-[18px] md:h-[clamp(12rem,28vw,17rem)] xl:aspect-[4/3] xl:h-auto">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
 
                 <h3 className="mt-5 text-lg font-bold leading-snug text-celestial-deep">

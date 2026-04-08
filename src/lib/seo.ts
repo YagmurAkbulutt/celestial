@@ -119,11 +119,6 @@ export const defaultKeywords = [
   "sludge and garbage disposal Turkey",
   
   // Niche & Audience Specific
-  "mega yacht agency Turkey",
-  "superyacht agent Turkiye",
-  "luxury yacht services Turkey",
-  "cruise vessel agency Turkey",
-  "passenger vessel agent Istanbul",
   "naval vessel agency Turkey",
   "tanker vessel agent Turkey",
   "chemical tanker agency Turkey",

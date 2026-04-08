@@ -11,6 +11,8 @@ export type Service = {
   relatedSearches: string[];
   overview: string;
   scope: string[];
+  image: string;
+  exampleImages?: string[];
 };
 
 export const services: Service[] = [
@@ -19,7 +21,7 @@ export const services: Service[] = [
     slug: "port-agency",
     title: "PORT AGENCY",
     description:
-      "Port agency in Turkey for cargo vessels, cruise calls, and yachts, covering pre-arrival documentation, berth and authority coordination, local attendance, and sailing follow-up.",
+      "Port agency in Turkey for cargo vessels, covering pre-arrival documentation, berth and authority coordination, local attendance, and sailing follow-up.",
     seoTitle: "Port Agency Turkey",
     seoDescription:
       "Port agency services in Turkey for vessel port calls, pre-arrival documentation, berth coordination, local attendance, and departure reporting.",
@@ -46,6 +48,7 @@ export const services: Service[] = [
       "Local ship agency attendance during the port call",
       "Departure clearance, sailing follow-up, and post-call reporting",
     ],
+    image: "/port_agency_enhanced.png",
   },
   {
     id: "02",
@@ -79,6 +82,7 @@ export const services: Service[] = [
       "Transparent updates for principals, managers, and stakeholders",
       "Closer follow-up on sensitive local, operational, and commercial matters",
     ],
+    image: "/protective_agency_enhanced.png",
   },
   {
     id: "03",
@@ -112,6 +116,7 @@ export const services: Service[] = [
       "Medical attendance, hospital visits, and urgent local support",
       "Ship stores, launch services, and onboard follow-up",
     ],
+    image: "/husbandry_services_enhanced.png",
   },
   {
     id: "04",
@@ -145,6 +150,7 @@ export const services: Service[] = [
       "Local follow-up with relevant authorities and traffic control",
       "Operational reporting through the full straits transit window",
     ],
+    image: "/turkish_straits_transit_agency_enhanced.png",
   },
   {
     id: "05",
@@ -178,6 +184,7 @@ export const services: Service[] = [
       "Bunker call documentation and authority handling during the call",
       "Departure timing support, close-out, and reporting",
     ],
+    image: "/bunker_call_agency.png",
   },
   {
     id: "06",
@@ -210,6 +217,12 @@ export const services: Service[] = [
       "Repair period coordination with shipyard teams, suppliers, and local stakeholders",
       "Documentation, access, launch, transport, and service arrangements",
       "Continuous reporting during docking, repair progress, and redelivery",
+    ],
+    image: "/shipyard_brokering_agency.png?v=7901a6a5",
+    exampleImages: [
+      "/foto/tersane-1.jpg",
+      "/foto/AD2E22B1-A848-467D-9AA2-3CFA30E73A9C.jpg",
+      "/foto/AC969043-5BD1-4086-BDC7-FFF9E166AE18.jpg"
     ],
   },
   {
@@ -244,6 +257,21 @@ export const services: Service[] = [
       "Operational follow-up during heavy lift and project cargo activity",
       "Reporting and issue escalation under tighter project timelines",
     ],
+    image: "/project_cargo.png",
+    exampleImages: [
+      "/foto/proje-1.jpg",
+      "/foto/proje-2.jpg",
+      "/foto/proje-3.jpg",
+      "/foto/proje-4.jpg",
+      "/foto/proje-5.jpg",
+      "/foto/proje-6.jpg",
+      "/foto/12502bb5-4306-407a-99ba-b28cc4ae8981.jpg",
+      "/foto/48a140c9-6e9a-44f3-8874-e580967e3bfe.jpg",
+      "/foto/8923fed0-813b-4f85-ad29-44521ff1bbd8.jpg",
+      "/foto/94fe9e54-5d14-48b5-a7ce-bec3cea52aec.jpg",
+      "/foto/46003f5c-386c-4f11-afcc-d06dc3398323.jpg",
+      "/foto/aeec247e-6224-45be-a802-041f1b66ff3e.jpg"
+    ],
   },
   {
     id: "08",
@@ -276,6 +304,12 @@ export const services: Service[] = [
       "Launch or local delivery coordination to the vessel",
       "Timing management against port call, anchorage, or transit operations",
       "Confirmation and reporting after onboard handover",
+    ],
+    image: "/spare_parts_delivery.png",
+    exampleImages: [
+      "/foto/yedekparca-1.jpg",
+      "/foto/yedekparca-2.jpg",
+      "/foto/3d48dcc3-7d49-45cb-b442-e8cb6dc5c295.jpg"
     ],
   },
 ];
