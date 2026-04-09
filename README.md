@@ -16,6 +16,15 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Contact Form Setup
+
+The contact form uses Web3Forms and does not require PHP or SMTP on the host.
+
+1. Create a Web3Forms access key for the destination mailbox.
+2. Add `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-key` to `.env.local`.
+3. Run `npm run build`.
+4. Deploy the generated `out/` contents to your host.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

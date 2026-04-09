@@ -213,9 +213,16 @@ export async function POST(request: Request) {
       text,
       html,
     });
-  } catch {
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown SMTP error";
+
+    console.error("Contact form mail failed:", error);
+
     return NextResponse.json(
-      { error: "Message could not be sent. Please try again." },
+      process.env.NODE_ENV === "development"
+        ? { error: "Message could not be sent.", debug: errorMessage }
+        : { error: "Message could not be sent. Please try again." },
       { status: 500 }
     );
   }

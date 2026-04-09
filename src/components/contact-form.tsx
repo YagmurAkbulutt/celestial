@@ -21,6 +21,7 @@ type ContactFormState = {
   email: string;
   service: string;
   message: string;
+  botcheck: string;
 };
 
 const initialState: ContactFormState = {
@@ -29,15 +30,19 @@ const initialState: ContactFormState = {
   email: "",
   service: "",
   message: "",
+  botcheck: "",
 };
-const isDevelopmentContactEndpoint = process.env.NODE_ENV === "development";
-const contactEndpoint = isDevelopmentContactEndpoint
-  ? "/api/contact"
-  : "/api/contact.php";
+const web3FormsEndpoint = "https://api.web3forms.com/submit";
+const web3FormsAccessKey =
+  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
 
 type ContactResponse = {
+  body?: {
+    message?: string;
+  };
   error?: string;
   message?: string;
+  success?: boolean;
 };
 
 async function parseContactResponse(response: Response) {
@@ -49,32 +54,19 @@ async function parseContactResponse(response: Response) {
 }
 
 function buildContactRequestBody(form: ContactFormState) {
-  const body = new URLSearchParams();
-
-  body.set("fullName", form.fullName);
-  body.set("company", form.company);
-  body.set("email", form.email);
-  body.set("service", form.service);
-  body.set("message", form.message);
-
-  return body;
-}
-
-function buildContactRequest(form: ContactFormState) {
-  if (isDevelopmentContactEndpoint) {
-    return {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    };
-  }
+  const serviceLabel = form.service.trim() || "General Inquiry";
 
   return {
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-    },
-    body: buildContactRequestBody(form),
+    access_key: web3FormsAccessKey,
+    subject: `Website Contact - ${serviceLabel}`,
+    from_name: form.fullName,
+    full_name: form.fullName,
+    company: form.company,
+    email: form.email,
+    service: serviceLabel,
+    message: form.message,
+    replyto: form.email,
+    botcheck: form.botcheck,
   };
 }
 
@@ -136,28 +128,42 @@ export function ContactForm() {
       return;
     }
 
+    if (!web3FormsAccessKey) {
+      setSuccessMessage("");
+      setErrorMessage(
+        `Contact form is not configured yet. Please email ${contactEmail}.`
+      );
+      return;
+    }
+
     setErrorMessage("");
     setIsServiceMenuOpen(false);
     setSuccessMessage("");
     setIsSubmitting(true);
 
     try {
-      const request = buildContactRequest(form);
-      const response = await fetch(contactEndpoint, {
+      const response = await fetch(web3FormsEndpoint, {
         method: "POST",
-        ...request,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(buildContactRequestBody(form)),
       });
       const data = await parseContactResponse(response);
+      const responseMessage =
+        data.body?.message ?? data.message ?? data.error ?? "";
 
-      if (!response.ok || !data.message) {
+      if (!response.ok || data.success === false) {
         setErrorMessage(
-          data.error ?? `Message could not be sent. Please email ${contactEmail}.`
+          responseMessage ||
+            `Message could not be sent. Please email ${contactEmail}.`
         );
         return;
       }
 
       setForm(initialState);
-      setSuccessMessage(data.message);
+      setSuccessMessage(responseMessage || "Message sent successfully.");
     } catch {
       setErrorMessage(`Message could not be sent. Please email ${contactEmail}.`);
     } finally {
@@ -289,6 +295,17 @@ export function ContactForm() {
           disabled={isSubmitting}
         />
       </label>
+
+      <input
+        type="text"
+        name="botcheck"
+        value={form.botcheck}
+        onChange={(event) => updateField("botcheck", event.target.value)}
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">

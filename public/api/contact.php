@@ -40,6 +40,11 @@ function config_bool(string $constant, string $envName, bool $default = false): 
     return in_array($value, ['1', 'true', 'yes', 'on'], true);
 }
 
+function debug_enabled(): bool
+{
+    return config_bool('CONTACT_FORM_DEBUG', 'CONTACT_FORM_DEBUG', false);
+}
+
 function trim_string($value, int $maxLength = 5000): string
 {
     if (!is_string($value)) {
@@ -256,7 +261,20 @@ if (
     !filter_var($toEmail, FILTER_VALIDATE_EMAIL) ||
     !filter_var($fromEmail, FILTER_VALIDATE_EMAIL)
 ) {
-    respond(500, ['error' => 'Contact form is not configured yet.']);
+    $payload = ['error' => 'Contact form is not configured yet.'];
+
+    if (debug_enabled()) {
+        $payload['debug'] = [
+            'smtp_host_present' => $smtpHost !== '',
+            'smtp_user_present' => $smtpUser !== '',
+            'smtp_pass_present' => $smtpPass !== '',
+            'to_email_valid' => filter_var($toEmail, FILTER_VALIDATE_EMAIL) !== false,
+            'from_email_valid' => filter_var($fromEmail, FILTER_VALIDATE_EMAIL) !== false,
+            'config_paths' => $configPaths,
+        ];
+    }
+
+    respond(500, $payload);
 }
 
 $serviceLabel = $service !== '' ? $service : 'General Inquiry';
@@ -325,7 +343,22 @@ try {
     );
 } catch (Throwable $exception) {
     error_log('Celestial contact form mail failed: ' . $exception->getMessage());
-    respond(500, ['error' => 'Message could not be sent. Please try again.']);
+
+    $payload = ['error' => 'Message could not be sent. Please try again.'];
+
+    if (debug_enabled()) {
+        $payload['debug'] = [
+            'message' => $exception->getMessage(),
+            'smtp_host' => $smtpHost,
+            'smtp_port' => $smtpPort,
+            'smtp_secure' => $smtpSecure,
+            'smtp_starttls' => $smtpStartTls,
+            'from_email' => $fromEmail,
+            'to_email' => $toEmail,
+        ];
+    }
+
+    respond(500, $payload);
 }
 
 respond(200, ['message' => 'Your message has been sent successfully.']);
