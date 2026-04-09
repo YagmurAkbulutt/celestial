@@ -5,7 +5,10 @@ import { fileURLToPath } from "node:url";
 const configDir = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     localPatterns: [
       { pathname: "**", search: "" },
       { pathname: "/shipyard_brokering_agency.png", search: "?v=7901a6a5" },

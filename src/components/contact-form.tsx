@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { contactEmail } from "@/lib/contact";
 
 const serviceOptions = [
   "Port Agency",
@@ -29,6 +30,53 @@ const initialState: ContactFormState = {
   service: "",
   message: "",
 };
+const isDevelopmentContactEndpoint = process.env.NODE_ENV === "development";
+const contactEndpoint = isDevelopmentContactEndpoint
+  ? "/api/contact"
+  : "/api/contact.php";
+
+type ContactResponse = {
+  error?: string;
+  message?: string;
+};
+
+async function parseContactResponse(response: Response) {
+  try {
+    return (await response.json()) as ContactResponse;
+  } catch {
+    return {};
+  }
+}
+
+function buildContactRequestBody(form: ContactFormState) {
+  const body = new URLSearchParams();
+
+  body.set("fullName", form.fullName);
+  body.set("company", form.company);
+  body.set("email", form.email);
+  body.set("service", form.service);
+  body.set("message", form.message);
+
+  return body;
+}
+
+function buildContactRequest(form: ContactFormState) {
+  if (isDevelopmentContactEndpoint) {
+    return {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    };
+  }
+
+  return {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+    },
+    body: buildContactRequestBody(form),
+  };
+}
 
 export function ContactForm() {
   const [form, setForm] = useState<ContactFormState>(initialState);
@@ -94,29 +142,24 @@ export function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/contact", {
+      const request = buildContactRequest(form);
+      const response = await fetch(contactEndpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
+        ...request,
       });
+      const data = await parseContactResponse(response);
 
-      const data = (await response.json()) as { error?: string; message?: string };
-
-      if (!response.ok) {
+      if (!response.ok || !data.message) {
         setErrorMessage(
-          data.error ?? "Message could not be sent. Please try again."
+          data.error ?? `Message could not be sent. Please email ${contactEmail}.`
         );
         return;
       }
 
       setForm(initialState);
-      setSuccessMessage(
-        data.message ?? "Your message has been sent successfully."
-      );
+      setSuccessMessage(data.message);
     } catch {
-      setErrorMessage("Message could not be sent. Please try again.");
+      setErrorMessage(`Message could not be sent. Please email ${contactEmail}.`);
     } finally {
       setIsSubmitting(false);
     }

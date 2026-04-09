@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   branchOfficeAddressLines,
   branchOfficeLocation,
+  contactEmail,
   correspondenceOffices,
   headquartersAddressLines,
   headquartersLocation,
@@ -122,7 +123,7 @@ export function SiteFooter() {
 
         <div className="mt-12 flex w-full flex-col gap-3 border-t border-white/10 pt-6 text-sm text-celestial-muted sm:flex-row sm:items-center sm:justify-between">
           <p>Copyright © 2026 - All Rights Reserved - Celestial Ship Agency Inc.</p>
-          <p>Çanakkale / Turkey</p>
+          <p>{contactEmail}</p>
         </div>
       </div>
     </footer>

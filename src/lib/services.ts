@@ -15,6 +15,77 @@ export type Service = {
   exampleImages?: string[];
 };
 
+function buildGallery(folder: string, files: string[]) {
+  return files.map((file) => encodeURI(`/${folder}/${file}`));
+}
+
+const shipyardGallery = [
+  "/foto/tersane-1.jpg",
+  "/foto/AD2E22B1-A848-467D-9AA2-3CFA30E73A9C.jpg",
+  "/foto/AC969043-5BD1-4086-BDC7-FFF9E166AE18.jpg",
+  ...buildGallery("tersane", [
+    "WhatsApp Image 2026-04-08 at 16.38.14 (4).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.16 (5).jpeg",
+  ]),
+];
+
+const projectCargoGallery = [
+  "/foto/proje-1.jpg",
+  "/foto/proje-2.jpg",
+  "/foto/proje-3.jpg",
+  "/foto/proje-4.jpg",
+  "/foto/proje-5.jpg",
+  "/foto/proje-6.jpg",
+  "/foto/12502bb5-4306-407a-99ba-b28cc4ae8981.jpg",
+  "/foto/48a140c9-6e9a-44f3-8874-e580967e3bfe.jpg",
+  "/foto/8923fed0-813b-4f85-ad29-44521ff1bbd8.jpg",
+  "/foto/94fe9e54-5d14-48b5-a7ce-bec3cea52aec.jpg",
+  "/foto/46003f5c-386c-4f11-afcc-d06dc3398323.jpg",
+  "/foto/aeec247e-6224-45be-a802-041f1b66ff3e.jpg",
+  ...buildGallery("proje", [
+    "WhatsApp Image 2026-04-08 at 16.38.12 (5).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.13 (1).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.13 (2).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.13 (3).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.13 (4).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.13 (5).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.13 (6).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.13 (7).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.13.jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.14 (1).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.14 (2).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.14 (3).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.14 (7).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.14.jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.16 (2).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.16 (4).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.16 (6).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.16 (7).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.16 (8).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.17.jpeg",
+  ]),
+];
+
+const sparePartsGallery = [
+  "/foto/yedekparca-1.jpg",
+  "/foto/yedekparca-2.jpg",
+  "/foto/3d48dcc3-7d49-45cb-b442-e8cb6dc5c295.jpg",
+  ...buildGallery("yedek", [
+    "WhatsApp Image 2026-04-08 at 16.38.04 (1).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.04 (2).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.04.jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.05.jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.06 (1).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.06.jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.09 (1).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.10 (3).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.11 (1).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.12 (6).jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.12.jpeg",
+    "WhatsApp Image 2026-04-08 at 16.38.14 (5).jpeg",
+  ]),
+];
+
 export const services: Service[] = [
   {
     id: "01",
@@ -219,11 +290,7 @@ export const services: Service[] = [
       "Continuous reporting during docking, repair progress, and redelivery",
     ],
     image: "/shipyard_brokering_agency.png?v=7901a6a5",
-    exampleImages: [
-      "/foto/tersane-1.jpg",
-      "/foto/AD2E22B1-A848-467D-9AA2-3CFA30E73A9C.jpg",
-      "/foto/AC969043-5BD1-4086-BDC7-FFF9E166AE18.jpg"
-    ],
+    exampleImages: shipyardGallery,
   },
   {
     id: "07",
@@ -258,20 +325,7 @@ export const services: Service[] = [
       "Reporting and issue escalation under tighter project timelines",
     ],
     image: "/project_cargo.png",
-    exampleImages: [
-      "/foto/proje-1.jpg",
-      "/foto/proje-2.jpg",
-      "/foto/proje-3.jpg",
-      "/foto/proje-4.jpg",
-      "/foto/proje-5.jpg",
-      "/foto/proje-6.jpg",
-      "/foto/12502bb5-4306-407a-99ba-b28cc4ae8981.jpg",
-      "/foto/48a140c9-6e9a-44f3-8874-e580967e3bfe.jpg",
-      "/foto/8923fed0-813b-4f85-ad29-44521ff1bbd8.jpg",
-      "/foto/94fe9e54-5d14-48b5-a7ce-bec3cea52aec.jpg",
-      "/foto/46003f5c-386c-4f11-afcc-d06dc3398323.jpg",
-      "/foto/aeec247e-6224-45be-a802-041f1b66ff3e.jpg"
-    ],
+    exampleImages: projectCargoGallery,
   },
   {
     id: "08",
@@ -306,11 +360,7 @@ export const services: Service[] = [
       "Confirmation and reporting after onboard handover",
     ],
     image: "/spare_parts_delivery.png",
-    exampleImages: [
-      "/foto/yedekparca-1.jpg",
-      "/foto/yedekparca-2.jpg",
-      "/foto/3d48dcc3-7d49-45cb-b442-e8cb6dc5c295.jpg"
-    ],
+    exampleImages: sparePartsGallery,
   },
 ];
 
